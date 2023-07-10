@@ -1,0 +1,74 @@
+<%- include('parts/header')%>
+	<%- include('parts/navbar')%>
+		<div class="container">
+			<form method="post">
+				<div class="row">
+					<div class="col col-12 col-md-2">
+						<label for="name" class=" m-2">name</label>
+					</div>
+					<div class="col col-12 col-md-10">
+						<input type="text" name="name" class="w-100 mt-2"><br>
+						<%let nameError=validationError.find(err=> err.param === 'name')%>
+							<%if (nameError){%>
+								<p class="alert alert-danger">
+									<%= nameError.msg%>
+								</p>
+								<%}%>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col col-12 col-md-2">
+						<label for="email" class=" m-2">email</label>
+					</div>
+					<div class="col col-12 col-md-10">
+						<input type="text" name="email" placeholder="example@example.com" class="w-100 mt-2"><br>
+						<%let emailError=validationError.find(err=> err.param === 'email')%>
+							<%if (emailError){%>
+								<p class="alert alert-danger  ">
+									<%= emailError.msg%>
+								</p>
+								<%}%>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col col-12 col-md-2">
+						<label for="password" class=" m-2">password</label>
+					</div>
+					<div class="col col-12 col-md-10">
+						<input type="password" name="Password" class="w-100 mt-2"><br>
+						<%let PasswordError=validationError.find(err=> err.param === 'Password')%>
+							<%if (PasswordError){%>
+								<p class="alert alert-danger">
+									<%= PasswordError.msg%>
+								</p>
+								<%}%>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col col-12 col-md-2">
+						<label for="repeatedPassword" class=" m-2">repeated Password</label>
+					</div>
+					<div class="col col-12 col-md-10">
+						<input type="password" name="repeatedPassword" class="w-100 mt-2"><br>
+						<%let repeatedPasswordError=validationError.find(err=> err.param === 'repeatedPassword')%>
+							<%if (repeatedPasswordError){%>
+								<p class="alert alert-danger">	
+									<%= repeatedPasswordError.msg%>
+								</p>
+								<%}%>
+					</div>
+				</div>
+				<input type="submit" value="signup" class="btn btn-primary w-100 mt-2">
+			</form>
+			<div class="container">
+				already have an account? <a href="/login">login</a>
+			</div>
+
+			<%if(AuthError){%>
+				<br>
+				<p class="alert alert-danger">
+					<%= AuthError%>
+				</p>
+				<%}%>
+		</div>
+		<%- include('parts/footer')%>

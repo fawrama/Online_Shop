@@ -1,0 +1,53 @@
+<%- include('parts/header')%>
+	<%- include('parts/navbar')%>
+		<form action="/" method="get" class="form-control container flex-col">
+			<select name="category" id="" class="w-25">
+				<option value="all">All</option>
+				<option value="food">food</option>
+				<option value="tech">technology</option>
+				<option value="clothes">clothes</option>
+			</select>
+			<br>
+			<input type="submit" value="filter" class="btn btn-primary w-25">
+		</form>
+		<%if (products.length===0) {%>
+			<div class="alert alert-danger container ">
+				There are no products
+			</div>
+			<%}else{%>
+				<div class="container">
+					<div class="row g-3 m-4">
+						<%for (let product of products){%>
+							<div class="col col-12 col-md-6 col-lg-4 col-xl-3">
+								<div class="card w-100 h-100">
+									<img src="<%=product.image%>" class="card-img-top h-100" alt="<%=product.name%>">
+									<div class="card-body">
+										<h5 class="card-title">
+											<a href="/product/<%=product._id%>">
+												<%=product.name%>
+											</a>
+										</h5>
+										<p>Price: RM <%=product.price%>
+										</p>
+										<form action="/cart" method="post" class="form-control d-flex flex-row">
+											<input type="number" min="0" name="amount" class="w-50 mx-2">
+											<input type="hidden" name="name" value="<%=product.name%>">
+											<input type="hidden" name="Price" value=" <%=product.price%>">
+											<input type="hidden" name="productId" value="<%=product._id%>">
+											<input type="hidden" name="redirectTo" value="/">
+												<input type="submit" value="add to cart"
+													class="btn btn-primary w-50 mx-2">
+										</form>
+										<%if(validationError){%>
+											<p class="alert alert-danger">
+												<%= validationError.msg%>
+											</p>
+											<%}%>
+									</div>
+								</div>
+							</div>
+							<%}%>
+					</div>
+				</div>
+				<%}%>
+					<%- include('parts/footer')%>

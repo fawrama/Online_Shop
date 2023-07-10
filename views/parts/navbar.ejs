@@ -1,0 +1,49 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+	<div class="container">
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+			aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+		</button>
+
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item active">
+					<a class="nav-link" href="/">Home</a>
+				</li>
+				<% if(isUser){ %>
+
+					<li class="nav-item">
+						<a class="nav-link" href="/cart">cart</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/orders">Orders</a>
+					</li>
+					<%} else{ %>
+						<li class="nav-item">
+							<a class="nav-link" href="/login">Login</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="/signup">Signup</a>
+						</li>
+						<%}%>
+							<li class="nav-item">
+								<a class="nav-link" href="/admin/AddOrders">Add orders</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="/admin/ManageOrders">Manage Orders</a>
+							</li>
+
+			</ul>
+			<% if(isUser){ %>
+				<div class="position-absolute end-0 m-2" >
+					<form action="/logout" method="post">
+						<input type="submit" class="btn btn-danger" value="Logout">
+					</form>
+				</div>
+				<%}%>
+		</div>
+	</div>
+</nav>

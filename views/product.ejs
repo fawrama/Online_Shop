@@ -1,0 +1,31 @@
+<%- include('parts/header')%>
+	<%- include('parts/navbar')%>
+		<%if (!product){%>
+			<div class="alert alert-danger container ">
+				There are no products with the given ID
+			</div>
+		<%}else{%>
+			<div class="container">
+				<div class="row g-3 m-4 row align-items-center">
+					<div class="col col-12 col-md-6  border-right-0">
+						<img src="/<%= product.image%>" class="rounded">
+					</div>
+					<div class="col col-12 col-md-6 border">
+						<div class="container">
+							<h3>
+								<%=product.name%>
+							</h3>
+							<br>
+							<h5>
+								Price: RM <%=product.price%>
+							</h5>
+							<form action="/cart" method="get">
+								<input type="number" min="0" class="w-49" value="1">
+								<input type="submit" class="btn btn-primary w-50">
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+			<%}%>
+		<%- include('parts/footer')%>

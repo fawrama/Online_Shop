@@ -1,0 +1,46 @@
+<%- include('parts/header')%>
+	<%- include('parts/navbar')%>
+		<div class="container">
+			<form method="post">
+				<div class="row">
+					<div class="col col-12 col-md-2">
+						<label for="email" class=" m-2">email</label>
+					</div>
+					<div class="col col-12 col-md-10">
+						<input type="text" name="email" placeholder="example@example.com" class="w-100 mt-2"><br>
+						<%let emailError=validationError.find(err=> err.param === 'email')%>
+							<%if (emailError){%>
+								<p class="alert alert-danger  ">
+									<%= emailError.msg%>
+								</p>
+								<%}%>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col col-12 col-md-2">
+						<label for="password" class=" m-2">password</label>
+					</div>
+					<div class="col col-12 col-md-10">
+						<input type="password" name="Password" class="w-100 mt-2"><br>
+						<%let PasswordError=validationError.find(err=> err.param === 'Password')%>
+							<%if (PasswordError){%>
+								<p class="alert alert-danger">
+									<%= PasswordError.msg%>
+								</p>
+								<%}%>
+					</div>
+				</div>
+
+				<input type="submit" value="Login" class="btn btn-primary w-100 mt-2">
+			</form>
+			<div class="container">
+				don't have an account? <a href="/signup">signup</a>
+			</div>
+			<%if(AuthError){%>
+				<br>
+				<p class="alert alert-danger">
+					<%=AuthError%>
+				</p>
+				<%}%>
+		</div>
+		<%- include('parts/footer')%>
